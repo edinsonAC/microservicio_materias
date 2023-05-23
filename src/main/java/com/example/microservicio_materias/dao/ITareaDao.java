@@ -4,8 +4,8 @@ import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.example.microservicio_materias.models.Materia;
+import com.example.microservicio_materias.models.Tarea;
 
-public interface IMateriaDao extends JpaRepository<Materia, UUID> {
+public interface ITareaDao extends JpaRepository<Tarea, UUID> {
     
 }

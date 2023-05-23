@@ -1,14 +1,14 @@
 package com.example.microservicio_materias.models;
-
+import java.util.UUID;
 import java.io.Serializable;
+
 import jakarta.persistence.*;
 import lombok.Data;
-import java.util.UUID;
 
 @Data
 @Entity
-@Table(name = "subject")
-public class Materia implements Serializable {
+@Table(name = "tasks")
+public class Tarea implements Serializable {
 
     @Id
     @Column(name = "id")
@@ -18,11 +18,10 @@ public class Materia implements Serializable {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "code")
-    private String code;
+    @Column(name = "description")
+    private String description;
 
-    public Materia() {
-        
-    }
-
+    @ManyToOne
+    @JoinColumn(name = "group_id")
+    private Grupo grupo;
 }

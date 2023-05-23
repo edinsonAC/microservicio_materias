@@ -1,28 +1,27 @@
 package com.example.microservicio_materias.models;
 
+import java.util.UUID;
 import java.io.Serializable;
+
 import jakarta.persistence.*;
 import lombok.Data;
-import java.util.UUID;
 
 @Data
 @Entity
-@Table(name = "subject")
-public class Materia implements Serializable {
+@Table(name = "group_person")
+public class GrupoPersona implements Serializable {
 
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private UUID id;
 
-    @Column(name = "name")
-    private String name;
+    @ManyToOne
+    @JoinColumn(name = "person_id")
+    private Persona persona;
 
-    @Column(name = "code")
-    private String code;
-
-    public Materia() {
-        
-    }
+    @ManyToOne
+    @JoinColumn(name = "group_id")
+    private Grupo grupo;
 
 }

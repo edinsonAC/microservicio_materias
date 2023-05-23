@@ -1,5 +1,10 @@
 package com.example.microservicio_materias.models;
 
+import java.util.UUID;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.Serializable;
 
 import jakarta.persistence.*;
@@ -7,17 +12,22 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "group")
+@Table(name = "\"group\"")
 public class Grupo implements Serializable {
 
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private UUID id;
 
     @Column(name = "name")
     private String name;
 
-    @JoinColumn(name = "code")
+    @ManyToOne
+    @JoinColumn(name = "subject_code")
     private Materia subject;
+
+    public Grupo() {
+    }
+
 }
