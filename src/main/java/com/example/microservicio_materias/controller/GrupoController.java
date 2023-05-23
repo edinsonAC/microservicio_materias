@@ -1,6 +1,8 @@
 package com.example.microservicio_materias.controller;
 
 import java.util.List;
+import java.util.UUID;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -42,7 +44,7 @@ public class GrupoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Grupo> buscarGrupo(@PathVariable String id) {
+    public ResponseEntity<Grupo> buscarGrupo(@PathVariable UUID id) {
         Grupo grupo = grupoService.findById(id);
         return new ResponseEntity<Grupo>(grupo, HttpStatus.OK);
     }

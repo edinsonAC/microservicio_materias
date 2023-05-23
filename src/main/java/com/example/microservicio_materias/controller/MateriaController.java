@@ -39,7 +39,7 @@ public class MateriaController {
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Materia> buscarMateria(@PathVariable String id) {
+    public ResponseEntity<Materia> buscarMateria(@PathVariable UUID id) {
         Materia ma = materiaService.findById(id);
         return new ResponseEntity<Materia>(ma, HttpStatus.OK);
     }

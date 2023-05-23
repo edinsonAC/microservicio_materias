@@ -2,6 +2,7 @@ package com.example.microservicio_materias.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.example.microservicio_materias.dao.IMateriaDao;
 import com.example.microservicio_materias.models.Materia;
@@ -26,7 +27,7 @@ public class MateriaService {
 		return materiaDao.save(materia);
 	}
 
-	public void deleteSubject(String id) {
+	public void deleteSubject(@PathVariable UUID id) {
 		materiaDao.deleteById(id);
 	}
 }

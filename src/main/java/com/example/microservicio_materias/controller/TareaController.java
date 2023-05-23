@@ -6,6 +6,7 @@ import com.example.microservicio_materias.service.TareaService;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import com.example.microservicio_materias.models.Tarea;
 import org.springframework.http.HttpStatus;
@@ -13,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.slf4j.Logger;
 
@@ -32,7 +34,7 @@ public class TareaController {
     }
 
     @GetMapping(value = "/:id")
-    public ResponseEntity<Tarea> buscarTarea(String id) {
+    public ResponseEntity<Tarea> buscarTarea(@PathVariable UUID id) {
         Tarea tarea = tareaService.findById(id);
         return new ResponseEntity<Tarea>(tarea, HttpStatus.OK);
     }

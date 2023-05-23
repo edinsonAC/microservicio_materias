@@ -1,9 +1,11 @@
 package com.example.microservicio_materias.service;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.example.microservicio_materias.dao.IGrupoDao;
 import com.example.microservicio_materias.dao.IGrupoPersonaDao;
@@ -23,7 +25,7 @@ public class GrupoService {
         return grupoDao.findAll();
     }
 
-    public Grupo findById(String id) {
+    public Grupo findById(@PathVariable UUID id) {
         return grupoDao.findById(id).orElse(null);
     }
 
@@ -31,7 +33,7 @@ public class GrupoService {
         return grupoDao.save(grupo);
     }
 
-    public void deleteById(String id) {
+    public void deleteById(@PathVariable UUID id) {
         grupoDao.deleteById(id);
     }
 
