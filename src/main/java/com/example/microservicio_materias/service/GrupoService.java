@@ -41,7 +41,7 @@ public class GrupoService {
         return grupoPersonaDao.findAll();
     }
 
-    public List<Persona> findPersonsByGroupId(String id) {
+    public List<Persona> findPersonsByGroupId(UUID id) {
         return grupoPersonaDao.findPersonsByGroupId(id);
     }
 

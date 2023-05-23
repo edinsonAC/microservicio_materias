@@ -11,6 +11,6 @@ import org.springframework.data.jpa.repository.Query;
 public interface IGrupoPersonaDao extends JpaRepository<GrupoPersona, UUID>{
 
     @Query(nativeQuery = true, value = "SELECT * FROM person p INNER JOIN group_person gp on gp.person_id = p.id where gp.group_id = ?1")
-	public List<Persona> findPersonsByGroupId(String id);
+	public List<Persona> findPersonsByGroupId(UUID id);
     
 }

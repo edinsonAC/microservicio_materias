@@ -56,7 +56,7 @@ public class GrupoController {
     }
 
     @GetMapping("/persons_by_group_id/{id}")
-    public ResponseEntity<List<Persona>> findPersonsByGroupId(@PathVariable String id) {
+    public ResponseEntity<List<Persona>> findPersonsByGroupId(@PathVariable UUID id) {
         List<Persona> grupos = grupoService.findPersonsByGroupId(id);
 
         return new ResponseEntity<List<Persona>>(grupos, HttpStatus.OK);
