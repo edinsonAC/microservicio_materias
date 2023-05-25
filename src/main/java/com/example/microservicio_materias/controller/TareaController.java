@@ -20,7 +20,7 @@ import org.slf4j.Logger;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
-@RequestMapping("/api/tasks")
+@RequestMapping("/api-subject/tasks")
 public class TareaController {
     private final Logger log = LoggerFactory.getLogger(MateriaController.class);
 

@@ -24,7 +24,7 @@ import io.micrometer.common.lang.NonNull;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
-@RequestMapping("/api/subject")
+@RequestMapping("/api-subject/subject")
 public class MateriaController {
 
     private final Logger log = LoggerFactory.getLogger(MateriaController.class);

@@ -19,14 +19,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.microservicio_materias.models.Grupo;
 import com.example.microservicio_materias.models.GrupoPersona;
-import com.example.microservicio_materias.models.Materia;
 import com.example.microservicio_materias.models.Persona;
 import com.example.microservicio_materias.service.GrupoService;
 import com.example.microservicio_materias.service.MateriaService;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
-@RequestMapping("/api/group")
+@RequestMapping("/api-subject/group")
 public class GrupoController {
 
     private final Logger log = LoggerFactory.getLogger(MateriaController.class);
