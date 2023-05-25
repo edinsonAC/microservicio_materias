@@ -45,7 +45,7 @@ public class MateriaController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<Materia> guardarMateria(@NonNull @RequestBody Materia subject) {
+    public ResponseEntity<Materia> guardarMateria(@RequestBody Materia subject) {
         Materia ma = materiaService.saveSubject(subject);
         return new ResponseEntity<Materia>(ma, HttpStatus.CREATED);
     }
@@ -55,5 +55,11 @@ public class MateriaController {
         subject.setId(id);
         Materia ma = materiaService.saveSubject(subject);
         return new ResponseEntity<Materia>(ma, HttpStatus.CREATED);
+    }
+
+    @GetMapping(value = "/subjects_by_person_id/{id}")
+    public ResponseEntity<List<Materia>> listarMaterias(@PathVariable UUID id) {
+        List<Materia> us = materiaService.findSubjectsByPersonId(id);
+        return new ResponseEntity<List<Materia>>(us, HttpStatus.OK);
     }
 }

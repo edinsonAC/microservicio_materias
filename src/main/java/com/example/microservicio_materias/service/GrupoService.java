@@ -45,4 +45,8 @@ public class GrupoService {
         return grupoPersonaDao.findPersonsByGroupId(id);
     }
 
+    public List<Grupo> findGroupsBySubjectId(UUID id) {
+        return grupoDao.findGroupsBySubjectId(id);
+    }
+
 }

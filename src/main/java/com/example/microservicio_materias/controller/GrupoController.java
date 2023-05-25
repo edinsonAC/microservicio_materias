@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -63,11 +64,25 @@ public class GrupoController {
 
     @PostMapping("/")
     public ResponseEntity<Grupo> guardarGrupo(@RequestBody Grupo grupo) {
-        log.info("===== datos recibidos INFO GRUOUP ===== {}", grupo.toString());
-
         Grupo gru = grupoService.saveGroup(grupo);
         return new ResponseEntity<Grupo>(gru, HttpStatus.OK);
+    }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Grupo> editarMateria(@RequestBody Grupo grupo, @PathVariable UUID id) {
+        grupo.setId(id);
+        if (grupo.getSubject() == null) {
+            Grupo gr1 = grupoService.findById(id);
+            grupo.setSubject(gr1.getSubject());
+        }
+        Grupo gr = grupoService.saveGroup(grupo);
+        return new ResponseEntity<Grupo>(gr, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/by_subject_id/{id}")
+    public ResponseEntity<List<Grupo>> listarGruposPorMateria(@PathVariable UUID id) {
+        List<Grupo> grupos = grupoService.findGroupsBySubjectId(id);
+        return new ResponseEntity<List<Grupo>>(grupos, HttpStatus.OK);
     }
 
 }
