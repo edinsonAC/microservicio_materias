@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.microservicio_materias.dto.ProyectoDTO;
 import com.example.microservicio_materias.models.Proyecto;
 import com.example.microservicio_materias.models.ProyectoPersona;
 import com.example.microservicio_materias.service.ProyectoService;
@@ -51,10 +52,10 @@ public class ProyectoController {
     }
 
     @GetMapping("/by_subject_and_semester/{subject}/{semester}")
-    public ResponseEntity<List<Proyecto>> listarProyectosPorMateriaSemestre(@PathVariable UUID subject,
-            Integer semester) {
-        List<Proyecto> proyectos = proyectoService.findProjectsBySubjectAndSemester(subject, semester);
-        return new ResponseEntity<List<Proyecto>>(proyectos, HttpStatus.OK);
+    public ResponseEntity<List<ProyectoDTO>> listarProyectosPorMateriaSemestre(@PathVariable UUID subject,
+            @PathVariable Integer semester) {
+        List<ProyectoDTO> proyectos = proyectoService.findProjectsBySubjectAndSemester(subject, semester);
+        return new ResponseEntity<List<ProyectoDTO>>(proyectos, HttpStatus.OK);
     }
 
     @GetMapping("/projects_by_group_id/{grupoId}")

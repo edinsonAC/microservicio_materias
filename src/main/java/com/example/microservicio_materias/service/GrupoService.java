@@ -1,5 +1,6 @@
 package com.example.microservicio_materias.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -42,7 +43,24 @@ public class GrupoService {
     }
 
     public List<Persona> findPersonsByGroupId(UUID id) {
-        return grupoPersonaDao.findPersonsByGroupId(id);
+        //por conflictos con el mapeo, surgio esta solucion
+        ArrayList<Object[]> objetos = new ArrayList<Object[]>();
+        List<Persona> personas = new ArrayList<>();
+
+        objetos = grupoPersonaDao.findPersonsByGroupId(id);
+        for (Object[] objArray : objetos) {
+            UUID personaId = (UUID) objArray[0];
+            String institutionalMail = (String) objArray[1];
+            String names = (String) objArray[3];
+            String lastnames = (String) objArray[4];
+            String code = (String) objArray[5];
+            String numDocument = (String) objArray[6];
+
+            Persona persona = new Persona(personaId, names, lastnames, institutionalMail, code, numDocument);
+            personas.add(persona);
+        }
+
+        return personas;
     }
 
     public List<Grupo> findGroupsBySubjectId(UUID id) {
