@@ -12,4 +12,7 @@ public interface IProyectoDao extends JpaRepository<Proyecto, UUID> {
 
     @Query(nativeQuery = true, value = "SELECT * FROM projects p INNER JOIN \"group\" g ON g.id = p.group_id WHERE g.subject_code = ?1 AND p.semestre = ?2 ")
     public List<Proyecto> findProjectsBySubjectAndSemester(UUID id, Integer semestre);
+
+    @Query(nativeQuery = true, value = "SELECT * FROM projects p WHERE p.group_id = ?1 ")
+    public List<Proyecto> findProjectsByGroupId(UUID id);
 }

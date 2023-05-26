@@ -43,4 +43,8 @@ public class ProyectoService {
     public List<Proyecto> findProjectsBySubjectAndSemester(UUID subject, Integer semester) {
         return proyectoDao.findProjectsBySubjectAndSemester(subject, semester);
     }
+
+    public List<Proyecto> findProjectsByGroupId(UUID grupId) {
+        return proyectoDao.findProjectsByGroupId(grupId);
+    }
 }

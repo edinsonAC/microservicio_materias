@@ -51,8 +51,15 @@ public class ProyectoController {
     }
 
     @GetMapping("/by_subject_and_semester/{subject}/{semester}")
-    public ResponseEntity<List<Proyecto>> listarProyectosPorMateriaSemestre(@PathVariable UUID subject, Integer semester) {
+    public ResponseEntity<List<Proyecto>> listarProyectosPorMateriaSemestre(@PathVariable UUID subject,
+            Integer semester) {
         List<Proyecto> proyectos = proyectoService.findProjectsBySubjectAndSemester(subject, semester);
+        return new ResponseEntity<List<Proyecto>>(proyectos, HttpStatus.OK);
+    }
+
+    @GetMapping("/projects_by_group_id/{grupoId}")
+    public ResponseEntity<List<Proyecto>> listarProyectoPorGrupo(@PathVariable UUID grupoId) {
+        List<Proyecto> proyectos = proyectoService.findProjectsByGroupId(grupoId);
         return new ResponseEntity<List<Proyecto>>(proyectos, HttpStatus.OK);
     }
 
