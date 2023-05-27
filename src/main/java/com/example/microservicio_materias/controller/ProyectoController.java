@@ -64,4 +64,11 @@ public class ProyectoController {
         return new ResponseEntity<List<Proyecto>>(proyectos, HttpStatus.OK);
     }
 
+    @GetMapping("/by_subject_code_and_semester/{subject}/{semester}")
+    public ResponseEntity<List<ProyectoDTO>> listarProyectosPorCodigoMateriaSemestre(@PathVariable String subject,
+            @PathVariable Integer semester) {
+        List<ProyectoDTO> proyectos = proyectoService.findProjectsBySubjectCodeAndSemester(subject, semester);
+        return new ResponseEntity<List<ProyectoDTO>>(proyectos, HttpStatus.OK);
+    }
+
 }

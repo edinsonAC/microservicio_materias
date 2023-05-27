@@ -92,4 +92,47 @@ public class ProyectoService {
     public List<Proyecto> findProjectsByGroupId(UUID grupId) {
         return proyectoDao.findProjectsByGroupId(grupId);
     }
+
+    public List<ProyectoDTO> findProjectsBySubjectCodeAndSemester(String subject, Integer semester) {
+        HashMap<UUID, List<Persona>> mapaGrupos = new HashMap<>();// mapa
+        List<ProyectoDTO> respuesta = new ArrayList<>();// Listado de personasDto
+        List<Proyecto> pros = proyectoDao.findProjectsBySubjectCodeAndSemester(subject, semester);// listado de
+                                                                                                  // proyectos
+        for (int i = 0; i < pros.size(); i++) {
+            ProyectoDTO proyecto = new ProyectoDTO(pros.get(i));
+
+            if (proyecto.getGrupo() != null) {
+                if (!mapaGrupos.containsKey(proyecto.getGrupo().getId())) {
+                    ArrayList<Object[]> objetos = new ArrayList<Object[]>();
+                    objetos = grupoPersonaDao.findPersonsByGroupId(proyecto.getGrupo().getId());
+
+                    List<Persona> pers = new ArrayList<>();
+
+                    for (Object[] objArray : objetos) {
+                        UUID personaId = (UUID) objArray[0];
+                        String institutionalMail = (String) objArray[1];
+                        String names = (String) objArray[3];
+                        String lastnames = (String) objArray[4];
+                        String code = (String) objArray[5];
+                        String numDocument = (String) objArray[6];
+
+                        Persona persona = new Persona(personaId, names, lastnames, institutionalMail, code,
+                                numDocument);
+                        pers.add(persona);
+                    }
+
+                    proyecto.setPersonas(pers);
+                    mapaGrupos.put(proyecto.getGrupo().getId(), pers);
+                } else {
+                    List<Persona> pers = mapaGrupos.get(proyecto.getGrupo().getId());
+                    proyecto.setPersonas(pers);
+                }
+
+            }
+            respuesta.add(proyecto);
+        }
+
+        return respuesta;
+    }
+
 }
